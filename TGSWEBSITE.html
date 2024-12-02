@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peluang - Matematika</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        header {
+            background-color: #5a67d8;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 2.5em;
+            letter-spacing: 2px;
+        }
+
+        /* Menu Navigasi di bawah header */
+        nav {
+            background-color: #2d3748;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            padding: 0 15px;
+        }
+
+        nav ul li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #edf2f7;
+            color: #2d3748;
+        }
+
+        /* Layout utama */
+        .main-container {
+            display: flex;
+            flex: 1;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Kolom kiri (Foto Dadu) */
+        .dice-section {
+            width: 220px;
+            background-color: #3483b7;
+            padding: 20px;
+            margin-right: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .dice-section h3 {
+            font-size: 1.5em;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+
+        .dice-section img {
+            width: 100%;
+            max-width: 180px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+
+        /* Konten utama */
+        .content {
+            flex: 1;
+            padding: 20px;
+            margin: 20px;
+            background-color: #0accee;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .content h2 {
+            color: #5a67d8;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .content p, ul {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #4a5568;
+        }
+[[[]]]
+        .content section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            
+        }
+
+        /* Sidebar kanan (Link Eksternal) */
+        .external-links {
+            background-color: #71c814;
+            width: 220px;
+            padding: 20px;
+            margin-left: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+
+        .external-links h3 {
+            color: #2d3748;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .external-links ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .external-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .external-links ul li a {
+            color: #5a67d8;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .external-links ul li a:hover {
+            color: #434190;
+        }
+
+        /* Tombol interaktif */
+        button {
+            background-color: #5a67d8;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 16px;
+            margin: 10px 0;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #434190;
+        }
+
+        #quizResult {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Mobile layout */
+        @media screen and (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+            }
+
+            .external-links {
+                width: 100%;
+                margin: 20px 0;
+            }
+
+            .dice-section {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        Peluang dalam Matematika
+    </header>
+
+    <!-- Menu Navigasi -->
+    <nav>
+        <ul>
+            <li><a href="javascript:void(0)" onclick="showContent('home')">Home</a></li>
+            <li><a href="javascript:void(0)" onclick="showContent('definisi')">Definisi</a></li>
+            <li><a href="javascript:void(0)" onclick="showContent('rumus')">Rumus</a></li>
+            <li><a href="javascript:void(0)" onclick="showContent('jenis')">Jenis Peluang</a></li>
+            <li><a href="javascript:void(0)" onclick="showContent('contoh')">Contoh Soal</a></li>
+            <li><a href="javascript:void(0)" onclick="showContent('latihan')">Latihan Soal</a></li>
+        </ul>
+    </nav>
+
+    <!-- Layout utama -->
+    <div class="main-container">
+        
+        <!-- Kolom Kiri (Foto Dadu) -->
+        <div class="dice-section">
+            <img  src="data:image/jpeg;base64,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" data-csiid="HgYWZ6vmLaSPseMPnceb2QQ_1" data-atf="1">
+         </div>
+
+        <!-- Konten Utama -->
+        <div class="content">
+            <!-- Konten Home -->
+            <section id="home" style="display: block; opacity: 1;">
+                <h2>Selamat Datang di Materi Peluang</h2>
+                <p>Pelajari konsep dasar dan penerapan peluang dalam matematika, sebuah cara untuk mengukur kemungkinan terjadinya suatu peristiwa dalam sebuah percobaan acak.</p>
+                <button onclick="alert('Mari kita mulai belajar tentang Peluang!')">Mulai Belajar!</button>
+            </section>
+
+           <!-- Konten Definisi Peluang -->
+<section id="definisi">
+    <h2>Definisi Peluang</h2>
+    <p>Peluang adalah suatu cara untuk mengukur kemungkinan terjadinya suatu peristiwa dalam sebuah percobaan acak. Nilai peluang berada antara 0 dan 1. Jika peluang suatu peristiwa mendekati 1, berarti peristiwa tersebut hampir pasti terjadi. Sebaliknya, jika peluang mendekati 0, maka peristiwa tersebut sangat kecil kemungkinannya terjadi.</p>
+    <p>Misalnya, dalam melempar dadu, terdapat 6 kemungkinan hasil. Jika kita ingin mengetahui peluang munculnya angka 4, kita hitung dengan membagi satu kemungkinan (munculnya angka 4) dengan seluruh kemungkinan (semua sisi dadu), yaitu <strong>1/6</strong>.</p>
+</section>
+
+<!-- Konten Rumus Peluang -->
+<section id="rumus">
+    <h2>Rumus Peluang</h2>
+    <p><strong>P(A) = n(A) / n(S)</strong></p>
+    <ul>
+        <li><strong>P(A)</strong> = Peluang terjadinya peristiwa A, yaitu hasil yang kita harapkan.</li>
+        <li><strong>n(A)</strong> = Banyaknya kejadian yang diinginkan, yaitu jumlah hasil yang sesuai dengan peristiwa A.</li>
+        <li><strong>n(S)</strong> = Banyaknya seluruh ruang sampel, yaitu jumlah semua kemungkinan yang dapat terjadi.</li>
+    </ul>
+    <p>Contoh: Jika kita melempar dadu, ruang sampelnya adalah {1, 2, 3, 4, 5, 6}. Peluang munculnya angka 4 adalah 1/6.</p>
+</section>
+
+<!-- Konten Jenis Peluang -->
+<section id="jenis">
+    <h2>Jenis-Jenis Peluang</h2>
+    <ul>
+        <li><strong>Peluang Empiris</strong> - Peluang yang didasarkan pada hasil dari eksperimen atau pengamatan.</li>
+        <li><strong>Peluang Teoretis</strong> - Peluang yang dihitung berdasarkan semua kemungkinan hasil yang ada, tanpa melakukan eksperimen.</li>
+        <li><strong>Peluang Subjektif</strong> - Peluang yang berdasarkan perasaan atau keyakinan seseorang, bukan pada data statistik atau eksperimen.</li>
+    </ul>
+</section>
+
+<!-- Konten Contoh Soal -->
+<section id="contoh">
+    <h2>Contoh Soal Peluang</h2>
+    <p>Soal 1: Jika sebuah koin dilemparkan satu kali, berapakah peluang munculnya sisi gambar?</p>
+    <p>Penyelesaian: Ruang sampel untuk pelemparan koin adalah {gambar, angka}. Karena hanya ada satu kejadian gambar, maka peluangnya adalah <strong>1/2</strong>.</p>
+    <p>Soal 2: Jika sebuah dadu dilempar satu kali, berapakah peluang munculnya angka lebih dari 4?</p>
+    <p>Penyelesaian: Ruang sampel untuk pelemparan dadu adalah {1, 2, 3, 4, 5, 6}. Angka yang lebih dari 4 adalah {5, 6}, sehingga peluangnya adalah <strong>2/6 = 1/3</strong>.</p>
+</section>
+
+<!-- Konten Latihan Soal -->
+<section id="latihan">
+    <h2>Latihan Soal Peluang</h2>
+    <p>Coba hitung peluang untuk soal berikut:</p>
+    <p>1. Dalam sebuah kotak terdapat 3 bola merah dan 5 bola biru. Jika diambil satu bola secara acak, berapakah peluang terambilnya bola merah?</p>
+    <button onclick="showQuiz()">Cek Jawaban</button>
+    <div id="quizResult"></div>
+</section>
+
+        </div>
+
+        <!-- Sidebar kanan (Link Eksternal) -->
+        <div class="Link lain">
+            <h3>Link Eksternal</h3>
+            <ul>
+                <li><a href="https://id.wikipedia.org/wiki/Peluang" target="_blank">Wikipedia Peluang</a></li>
+                <li><a href="https://www.khanacademy.org/math/statistics-probability/probability-library" target="_blank">Khan Academy: Probability</a></li>
+                <li><a href="https://www.ruangguru.com/blog/mengetahui-percobaan-ruang-sampel-dan-menghitung-peluang-kejadian" target="_blank">Ruang guru</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2024 Materi Peluang
+    </footer>
+
+    <script>
+        function showContent(sectionId) {
+            const sections = document.querySelectorAll('.content section');
+            sections.forEach(section => {
+                section.style.display = 'none';
+                section.style.opacity = 0;
+            });
+
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.style.display = 'block';
+                setTimeout(() => {
+                    targetSection.style.opacity = 1;
+                }, 50);
+            }
+        }
+    </script>
+</body>
+</html>
